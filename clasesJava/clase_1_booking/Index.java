@@ -74,6 +74,6 @@ public class Index {
 
       objBooking.setNumberBooking (numberBooking);
       objBooking.setDateBooking (dateBooking);
-      objBooking.setNumberPeople (numberPeople);
+      objBooking.setNumberPeople (numberPeople) ;
     }
 }
