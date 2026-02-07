@@ -3,77 +3,117 @@ import java.util.Scanner;
 import backend.Booking;
 
 public class Index {
-  
-    private static Scanner scan = new Scanner(System.in); //
-    private static Booking objBooking = new Booking();
 
-    public static void main(String[] args) {
-     byte opc = menu();
+  private static Scanner scan = new Scanner(System.in);
+  private static Booking newBooking = new Booking();
 
-     switch (opc) {
-       case 1: {
-        switch(managmentBooking()){
+  public static void main(String[] args) {
+    byte opc = menu();
+
+    switch (opc) {
+      case 1: {
+        switch (managmentBooking()) {
           case 1: {
             registerBooking();
             break;
           }
           case 2: {
+            searchBooking();
             break;
           }
           case 3: {
             break;
           }
-          default:{
+          default: {
             break;
           }
         }
         break;
-       }
-       case 2: {
+      }
+      case 2: {
         break;
-       }
-       default:
-       System.out.println("Opción no válida");
-     }
-    
+      }
+      default:
+        System.out.println("Opción no válida");
     }
 
-    private static byte menu() {
-      // hacer un do while hasta que ingrese un 1 o 2
+  }
+
+  private static byte menu() {
+    byte opc = 0;
+
+    do {
       System.out.println("Menu");
       System.out.println("1. Gestionar reservas");
       System.out.println("2. Ingrese dos para salir");
 
-      byte opc = scan.nextByte();
-      return opc;
-    }
+      try {
+        opc = scan.nextByte();
+      } catch (Exception e) {
+        System.out.println("Por favor ingrese un numero valido (1 o 2).");
+        scan.next();
+        opc = 0;
+      }
+    } while (opc != 1 && opc != 2);
 
-    private static byte managmentBooking() {
-      // hacer un do while hasta que ingrese un 1 2 3 o 4
+    return opc;
+  }
+
+  private static byte managmentBooking() {
+    byte opc = 0;
+    do {
       System.out.println("Gestionar reservas");
       System.out.println("1. registrar reservas");
       System.out.println("2. Busqueda");
       System.out.println("3. Actualizar");
       System.out.println("4. Para salir ");
 
-      byte opc = scan.nextByte();
-      return opc;
-    }
+      try {
+        opc = scan.nextByte();
+      } catch (Exception e) {
+        System.out.println("Por favor ingrese un numero valido (1 2 3 o 4).");
+        scan.next();
+        opc = 0;
+      }
+    } while (opc != 1 && opc != 2 && opc != 3 && opc != 4);
 
-    private static void registerBooking() {
-      System.out.println("registar reserva");
+    return opc;
+  }
 
-      System.out.println("numero de reserva");
+  private static void registerBooking() {
+    String againBooking = "s";
+
+    do {
+      System.out.println("Registrar reserva");
+
+      System.out.println("Ingrese el numero de la reserva");
       int numberBooking = scan.nextInt();
 
-      System.out.println("Ingrese fecha de reserva");
+      System.out.println("Ingrese la fecha de la reserva");
       String dateBooking = scan.next();
 
-      System.out.println("Numero de personas");
+      System.out.println("Ingrese el numero de personas");
       byte numberPeople = scan.nextByte();
 
-      objBooking.setNumberBooking (numberBooking);
-      objBooking.setDateBooking (dateBooking);
-      objBooking.setNumberPeople (numberPeople) ;
+      System.out.println("Ingresar s para otra reserva n para salir terminar reservas");
+      againBooking = scan.next();
+
+      Booking newBooking = new Booking(numberBooking, dateBooking, numberPeople);
+
+      if (newBooking.Register(newBooking)) {
+        System.out.println("Reserva registrada exitosamente");
+      } else {
+        System.out.println("Error al registrar la reserva");
+      }
+    } while (againBooking.equals("s"));
+  }
+
+  private static void searchBooking() {
+    System.out.println("Ingrese el numero de la reserva");
+    int searchBooking = scan.nextInt();
+
+    if (searchBooking > 0) {
+      newBooking.searchBooking(searchBooking);
     }
+  }
 }
