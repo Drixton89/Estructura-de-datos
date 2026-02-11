@@ -55,17 +55,22 @@ public class Booking {
     this.numberPeople = numberPeople;
   }
 
+  // metodo constructor #3 - para devuelva los datos actualizados
+  public Booking(int numberBooking, String dateBooking, boolean status) {
+    this.numberBooking = numberBooking;
+    this.dateBooking = dateBooking;
+    this.status = status;
+  }
+
   private static ArrayList<Booking> bookingList = new ArrayList<Booking>();
 
   public boolean Register(Booking booking) {
 
-    if (bookingList == null) {
-      return false;
-    } else {
+    if (booking != null) {
       bookingList.add(booking);
-
-      System.out.println("numero__" + bookingList.size());
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -82,4 +87,5 @@ public class Booking {
     }
     return "No se encontro la reserva";
   }
+
 }

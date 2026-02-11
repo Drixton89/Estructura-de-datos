@@ -10,32 +10,35 @@ public class Index {
   public static void main(String[] args) {
     byte opc = menu();
 
-    switch (opc) {
-      case 1: {
-        switch (managmentBooking()) {
-          case 1: {
-            registerBooking();
-            break;
+    do {
+      switch (opc) {
+        case 1: {
+          switch (managmentBooking()) {
+            case 1: {
+              registerBooking();
+              break;
+            }
+            case 2: {
+              searchBooking();
+              break;
+            }
+            case 3: {
+              break;
+            }
+            default: {
+              break;
+            }
           }
-          case 2: {
-            searchBooking();
-            break;
-          }
-          case 3: {
-            break;
-          }
-          default: {
-            break;
-          }
+          break;
         }
-        break;
+        case 2: {
+          break;
+        }
+        default:
+          System.out.println("Opción no válida");
       }
-      case 2: {
-        break;
-      }
-      default:
-        System.out.println("Opción no válida");
-    }
+
+    } while (opc < 2);
 
   }
 
@@ -62,11 +65,11 @@ public class Index {
   private static byte managmentBooking() {
     byte opc = 0;
     do {
-      System.out.println("Gestionar reservas");
-      System.out.println("1. registrar reservas");
-      System.out.println("2. Busqueda");
-      System.out.println("3. Actualizar");
-      System.out.println("4. Para salir ");
+      System.out.println("\n Gestionar reservas");
+      System.out.println("1. Registrar reserva");
+      System.out.println("2. Buscar reserva");
+      System.out.println("3. Actualizar reserva ");
+      System.out.println("4. Para salir del menu de reservas ");
 
       try {
         opc = scan.nextByte();
@@ -84,36 +87,45 @@ public class Index {
     String againBooking = "s";
 
     do {
-      System.out.println("Registrar reserva");
+      switch (againBooking) {
+        case "s":
+          System.out.println("\n Registrar reserva");
 
-      System.out.println("Ingrese el numero de la reserva");
-      int numberBooking = scan.nextInt();
+          System.out.println("Ingrese el numero de la reserva");
+          int numberBooking = scan.nextInt();
 
-      System.out.println("Ingrese la fecha de la reserva");
-      String dateBooking = scan.next();
+          System.out.println("Ingrese la fecha de la reserva");
+          String dateBooking = scan.next();
 
-      System.out.println("Ingrese el numero de personas");
-      byte numberPeople = scan.nextByte();
+          System.out.println("Ingrese el numero de personas");
+          byte numberPeople = scan.nextByte();
 
-      System.out.println("Ingresar s para otra reserva n para salir terminar reservas");
-      againBooking = scan.next();
+          Booking newBooking = new Booking(numberBooking, dateBooking, numberPeople);
 
-      Booking newBooking = new Booking(numberBooking, dateBooking, numberPeople);
+          if (newBooking.Register(newBooking)) {
+            System.out.println("Reserva registrada exitosamente");
+          } else {
+            System.out.println("Error al registrar la reserva");
+          }
 
-      if (newBooking.Register(newBooking)) {
-        System.out.println("Reserva registrada exitosamente");
-      } else {
-        System.out.println("Error al registrar la reserva");
+          System.out.println("\n Ingresar s para otra reserva u otro caracter para salir terminar reservas");
+          againBooking = scan.next();
+
+          break;
+
+        default:
+          break;
       }
+
     } while (againBooking.equals("s"));
   }
 
   private static void searchBooking() {
     System.out.println("Ingrese el numero de la reserva");
-    int searchBooking = scan.nextInt();
+    int IDsearchBooking = scan.nextInt();
 
-    if (searchBooking > 0) {
-      newBooking.searchBooking(searchBooking);
+    if (IDsearchBooking > 0) {
+      newBooking.searchBooking(IDsearchBooking);
     }
   }
 }
