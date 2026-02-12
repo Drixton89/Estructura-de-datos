@@ -55,7 +55,7 @@ public class Booking {
     this.numberPeople = numberPeople;
   }
 
-  // metodo constructor #3 - para devuelva los datos actualizados
+  // metodo constructor #3 - para devolver los datos actualizados
   public Booking(int numberBooking, String dateBooking, boolean status) {
     this.numberBooking = numberBooking;
     this.dateBooking = dateBooking;
@@ -64,6 +64,7 @@ public class Booking {
 
   private static ArrayList<Booking> bookingList = new ArrayList<Booking>();
 
+  // metodo para registrar la reserva
   public boolean Register(Booking booking) {
 
     if (booking != null) {
@@ -74,6 +75,7 @@ public class Booking {
     }
   }
 
+  // metodo para buscar la reserva
   public String searchBooking(int numberBooking) {
 
     for (Booking booking : bookingList) {
@@ -83,6 +85,24 @@ public class Booking {
         System.out.println("Fecha de reserva: " + booking.getDateBooking());
         System.out.println("Numero de personas: " + booking.getNumberPeople());
         return "Reserva encontrada";
+      }
+    }
+    return "No se encontro la reserva";
+  }
+
+  // metodo para actualizar la reserva
+  public String updateBooking(int numberBooking, String dateBooking, byte numberPeople, boolean status) {
+
+    for (Booking booking : bookingList) {
+      if (booking.getNumberBooking() == numberBooking) {
+
+        booking.setDateBooking(dateBooking);
+        booking.setNumberPeople(numberPeople);
+        booking.setStatus(status);
+
+        System.out.println("Fecha de reserva: " + booking.getDateBooking());
+        System.out.println("Numero de personas: " + booking.getNumberPeople());
+        return "Reserva actualizada.";
       }
     }
     return "No se encontro la reserva";

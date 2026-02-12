@@ -23,6 +23,7 @@ public class Index {
               break;
             }
             case 3: {
+              updateBooking();
               break;
             }
             default: {
@@ -126,6 +127,24 @@ public class Index {
 
     if (IDsearchBooking > 0) {
       newBooking.searchBooking(IDsearchBooking);
+    }
+  }
+
+  private static void updateBooking() {
+    System.out.println("Ingrese el numero de la reserva");
+    int IDsearchBooking = scan.nextInt();
+
+    System.out.println("Ingrese la fecha a actualizar");
+    String dateBooking = scan.next();
+
+    System.out.println("Ingrese numero de personas a actualizar");
+    byte numberPeople = scan.nextByte();
+
+    System.out.println("Ingrese estado a actualizar de la reserva");
+    boolean statusBooking = scan.nextBoolean();
+
+    if (IDsearchBooking > 0) {
+      newBooking.updateBooking(IDsearchBooking, dateBooking, numberPeople, statusBooking);
     }
   }
 }
