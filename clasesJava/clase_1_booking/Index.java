@@ -26,6 +26,10 @@ public class Index {
               updateBooking();
               break;
             }
+            case 4: {
+              cancelBooking();
+              break;
+            }
             default: {
               break;
             }
@@ -70,7 +74,8 @@ public class Index {
       System.out.println("1. Registrar reserva");
       System.out.println("2. Buscar reserva");
       System.out.println("3. Actualizar reserva ");
-      System.out.println("4. Para salir del menu de reservas ");
+      System.out.println("4. Cancelar reserva ");
+      System.out.println("5. Para salir del menu de reservas ");
 
       try {
         opc = scan.nextByte();
@@ -79,7 +84,7 @@ public class Index {
         scan.next();
         opc = 0;
       }
-    } while (opc != 1 && opc != 2 && opc != 3 && opc != 4);
+    } while (opc != 1 && opc != 2 && opc != 3 && opc != 4 && opc != 5);
 
     return opc;
   }
@@ -140,11 +145,17 @@ public class Index {
     System.out.println("Ingrese numero de personas a actualizar");
     byte numberPeople = scan.nextByte();
 
-    System.out.println("Ingrese estado a actualizar de la reserva");
-    boolean statusBooking = scan.nextBoolean();
-
     if (IDsearchBooking > 0) {
-      newBooking.updateBooking(IDsearchBooking, dateBooking, numberPeople, statusBooking);
+      newBooking.updateBooking(IDsearchBooking, dateBooking, numberPeople);
+    }
+  }
+
+  private static void cancelBooking() {
+    System.out.println("Ingrese el numero de la reserva a cancelar");
+    int IdBooking = scan.nextInt();
+
+    if (IdBooking > 0) {
+      newBooking.cancelBooking(IdBooking);
     }
   }
 }

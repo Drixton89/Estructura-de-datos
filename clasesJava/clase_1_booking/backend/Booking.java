@@ -77,35 +77,55 @@ public class Booking {
 
   // metodo para buscar la reserva
   public String searchBooking(int numberBooking) {
-
+    String result = "";
+    
     for (Booking booking : bookingList) {
       if (booking.getNumberBooking() == numberBooking) {
 
         System.out.println("Numero de reserva: " + booking.getNumberBooking());
         System.out.println("Fecha de reserva: " + booking.getDateBooking());
         System.out.println("Numero de personas: " + booking.getNumberPeople());
-        return "Reserva encontrada";
+        result = "Reserva encontrada";
+        return result;
       }
     }
-    return "No se encontro la reserva";
+    result = "No se encontro la reserva";
+    return result;
   }
 
   // metodo para actualizar la reserva
-  public String updateBooking(int numberBooking, String dateBooking, byte numberPeople, boolean status) {
+  public String updateBooking(int numberBooking, String dateBooking, byte numberPeople) {
 
     for (Booking booking : bookingList) {
       if (booking.getNumberBooking() == numberBooking) {
 
         booking.setDateBooking(dateBooking);
         booking.setNumberPeople(numberPeople);
-        booking.setStatus(status);
 
         System.out.println("Fecha de reserva: " + booking.getDateBooking());
         System.out.println("Numero de personas: " + booking.getNumberPeople());
-        return "Reserva actualizada.";
+        System.out.println(" \n Reserva  " + booking.getNumberBooking() + " actualizada exitosamente");
+        return ".";
       }
     }
     return "No se encontro la reserva";
+  }
+
+  // metodo para cancelar la reserva
+  public String cancelBooking (int IdBooking){
+
+    String result = "";
+
+    for( Booking booking : bookingList ){
+      if(booking.getNumberBooking() == IdBooking){
+
+        booking.setStatus(false);
+        System.out.println("\n La reserva :" + IdBooking + " ha sido cancelada" );
+        System.out.println("\n La reserva con fecha de :" + booking.getDateBooking() + " queda en estado " + (booking.getStatus() == false ? "cancelado" : "Disponible"));
+        result = "Reserva cancelada";
+      }
+    }
+    return  result;
   }
 
 }
