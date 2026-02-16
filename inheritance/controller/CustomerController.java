@@ -1,0 +1,32 @@
+package inheritance.controller;
+
+import java.util.ArrayList;
+import inheritance.model.Customer;
+
+public class CustomerController extends PersonController {
+
+  private ArrayList<Customer> customerList = new ArrayList<Customer>();
+
+  public boolean register(Customer objCustomer) {
+
+    if (objCustomer != null) {
+      customerList.add(objCustomer);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public Customer searchPerson(String dni) {
+    Customer registered = null;
+
+    for (Customer data : customerList) {
+      if (data.getDni().equals(dni)) {
+        registered = data;
+        break;
+      }
+    }
+    return registered;
+  }
+
+}
