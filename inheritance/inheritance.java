@@ -41,7 +41,7 @@ public class inheritance {
     System.out.println("\n Gestionar clientes");
     System.out.println("\n 1. Registro de cliente");
     System.out.println("\n 2. Buscar cliente");
-    System.out.println("\n 3. cambiar estados");
+    System.out.println("\n 3. Cambiar para estado del cliente");
     System.out.println("\n 4. salir");
 
     byte option = scan.nextByte();
@@ -54,7 +54,7 @@ public class inheritance {
         searchCustomer();
         break;
       case 3:
-        // changeStatus();
+        changeStatus();
         break;
       default:
         break;
@@ -108,6 +108,29 @@ public class inheritance {
 
       } else {
         System.out.println("Cliente no encontrado");
+      }
+    }
+  }
+
+  private static void changeStatus() {
+    boolean customer, updateStatus;
+    String dni, status;
+    do {
+      System.out.println("\n Ingrese numero del dni del cliente a cambiar el estado");
+      dni = scan.next();
+
+      System.out.println("\n Ingrese s para disponible, ingrese n cancelar");
+      status = scan.next();
+    } while (!status.equals("s") && !status.equals("n"));
+
+    if (dni != null) {
+      updateStatus = status.equals("s") ? true : false;
+      customer = customerController.changeStatus(dni, updateStatus);
+
+      if (customer) {
+        System.out.println("\n El estado del Cliente ha sido actualizado exitosamente\n");
+      } else {
+        System.out.println("\n El estado del Cliente no se ha sido actualizado exitosamente");
       }
     }
   }

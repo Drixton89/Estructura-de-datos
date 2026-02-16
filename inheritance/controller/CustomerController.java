@@ -29,4 +29,18 @@ public class CustomerController extends PersonController {
     return registered;
   }
 
+  public boolean changeStatus(String dni, boolean status) {
+    boolean result = false;
+
+    if (dni != null) {
+      for (Customer data : customerList) {
+        if (data.getDni().equals(dni)) {
+          data.setStatus(status);
+          result = true;
+          break;
+        }
+      }
+    }
+    return result;
+  }
 }

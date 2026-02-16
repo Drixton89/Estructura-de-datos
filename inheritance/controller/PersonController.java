@@ -9,6 +9,6 @@ abstract class PersonController {
 
   abstract Customer searchPerson(String dni);
 
-  abstract boolean changeStatus(String dni);
+  abstract boolean changeStatus(String dni, boolean status);
 
 }
