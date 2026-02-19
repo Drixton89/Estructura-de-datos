@@ -17,13 +17,17 @@ public class CustomerController extends PersonController {
     }
   }
 
-  public Customer searchPerson(String dni) {
-    Customer registered = null;
+  public String searchPerson(String dni) {
+    String registered = null;
 
     for (Customer data : customerList) {
       if (data.getDni().equals(dni)) {
-        registered = data;
+        registered = "DNI: " + data.getDni() + " " + "Email: " + data.getEmail() + " " + "Telefono: "
+            + data.getPhone() + " " + "Nombre: " + data.getName() + " " + "Apellido: " + data.getLastName() + " "
+            + "Estado: " + data.isStatus();
         break;
+      } else {
+        registered = null;
       }
     }
     return registered;

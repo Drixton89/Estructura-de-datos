@@ -7,7 +7,7 @@ abstract class PersonController {
 
   abstract boolean registerPerson(Customer customer);
 
-  abstract Customer searchPerson(String dni);
+  abstract String searchPerson(String dni);
 
   abstract boolean changeStatus(String dni, boolean status);
 

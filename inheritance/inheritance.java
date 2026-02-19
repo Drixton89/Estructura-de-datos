@@ -92,23 +92,14 @@ public class inheritance {
   private static void searchCustomer() {
     System.out.println("\n Ingrese numero del dni del cliente");
     String dni = scan.next();
-    Customer customer;
+    String customer;
 
     if (dni != null) {
       customer = customerController.searchPerson(dni);
 
-      // hacer employee y suplier
-      // agregar un swicth case opara validar cuando no busca u cliente y array esta
-      // vacio
       if (customer != null) {
         System.out.println("\n Cliente encontrado exitosamente \n");
-        System.out.println("DNI del cliente es : " + customer.getDni());
-        System.out.println("Nombre del cliente es : " + customer.getName());
-        System.out.println("Apellido del cliente es : " + customer.getLastName());
-        System.out.println("Email del cliente es : " + customer.getEmail());
-        System.out.println("Telefono del cliente es : " + customer.getPhone());
-        System.out.println("Estado del cliente es : " + customer.isStatus());
-
+        System.out.println("El cliente es : " + customer);
       } else {
         System.out.println("Cliente no encontrado");
       }
