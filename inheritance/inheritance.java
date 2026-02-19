@@ -82,7 +82,7 @@ public class inheritance {
     System.out.println("\n");
     Customer newCustomer = new Customer(email, phone, dni, name, lastName, true);
 
-    if (customerController.register(newCustomer)) {
+    if (customerController.registerPerson(newCustomer)) {
       System.out.println("Cliente registrado exitosamente");
     } else {
       System.out.println("Error al registrar el cliente");
@@ -97,6 +97,9 @@ public class inheritance {
     if (dni != null) {
       customer = customerController.searchPerson(dni);
 
+      // hacer employee y suplier
+      // agregar un swicth case opara validar cuando no busca u cliente y array esta
+      // vacio
       if (customer != null) {
         System.out.println("\n Cliente encontrado exitosamente \n");
         System.out.println("DNI del cliente es : " + customer.getDni());

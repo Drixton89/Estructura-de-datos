@@ -7,7 +7,7 @@ public class CustomerController extends PersonController {
 
   private ArrayList<Customer> customerList = new ArrayList<Customer>();
 
-  public boolean register(Customer objCustomer) {
+  public boolean registerPerson(Customer objCustomer) {
 
     if (objCustomer != null) {
       customerList.add(objCustomer);
@@ -38,6 +38,8 @@ public class CustomerController extends PersonController {
           data.setStatus(status);
           result = true;
           break;
+        } else {
+          result = false;
         }
       }
     }
