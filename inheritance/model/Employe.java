@@ -1,3 +1,5 @@
+package inheritance.model;
+
 public class Employe extends Person {
 
   private String typeBlood;
