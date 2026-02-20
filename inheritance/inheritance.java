@@ -4,11 +4,12 @@ import java.util.Scanner;
 import inheritance.model.Customer;
 import inheritance.model.Employe;
 import inheritance.controller.CustomerController;
+import inheritance.controller.EmployeeController;
 
-// esta es la vista
 public class inheritance {
   private static Scanner scan = new Scanner(System.in);
   private static CustomerController customerController = new CustomerController();
+  private static EmployeeController employeeController = new EmployeeController();
 
   public static void main(String[] args) {
     byte opc;
@@ -86,7 +87,7 @@ public class inheritance {
     System.out.println("\n");
     Customer newCustomer = new Customer(email, phone, dni, name, lastName, true);
 
-    if (customerController.registerPerson(newCustomer, null)) {
+    if (customerController.registerPerson(newCustomer)) {
       System.out.println("Cliente registrado exitosamente");
     } else {
       System.out.println("Error al registrar el cliente");
@@ -133,6 +134,7 @@ public class inheritance {
     }
   }
 
+  // gestionar empleados
   private static void managementEmploye() {
     System.out.println("\n Gestionar empleados");
     System.out.println("\n 1. Registro de empleado");
@@ -147,7 +149,7 @@ public class inheritance {
         registerEmploye();
         break;
       case 2:
-        // searchEmploye();
+        searchEmploye();
         break;
       case 3:
         // changeStatusEmploye();
@@ -175,11 +177,31 @@ public class inheritance {
     System.out.println("\n");
     Employe newEmploye = new Employe(dni, name, lastName, typeBlood, true);
 
-    if (customerController.registerPerson(null, newEmploye)) {
+    if (employeeController.registerPerson(newEmploye)) {
       System.out.println("Empleado registrado exitosamente");
     } else {
       System.out.println("Error al registrar el empleado");
     }
+
+  }
+
+  private static void searchEmploye() {
+    String result = "";
+    System.out.println("\n Buscar empleado");
+    System.out.println(" Ingrese Numero de dni: ");
+    String dni = scan.next();
+
+    System.out.println("\n");
+
+    result = employeeController.searchPerson(dni);
+
+    if (result != null) {
+      System.out.println("Empleado encontrado exitosamente \n");
+      System.out.println("El empleado es: " + result);
+    } else {
+      System.out.println("Empleado no encontrado");
+    }
+
   }
 
 }

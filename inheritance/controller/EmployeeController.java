@@ -1,16 +1,16 @@
 package inheritance.controller;
 
 import java.util.ArrayList;
-import inheritance.model.Customer;
+import inheritance.model.Employe;
 
-public class CustomerController extends PersonController<Customer> {
+public class EmployeeController extends PersonController<Employe> {
 
-  private ArrayList<Customer> customerList = new ArrayList<Customer>();
+  private ArrayList<Employe> employeList = new ArrayList<Employe>();
 
-  public boolean registerPerson(Customer objCustomer) {
+  public boolean registerPerson(Employe objEmployee) {
 
-    if (objCustomer != null) {
-      customerList.add(objCustomer);
+    if (objEmployee != null) {
+      employeList.add(objEmployee);
       return true;
     } else {
       return false;
@@ -20,11 +20,10 @@ public class CustomerController extends PersonController<Customer> {
   public String searchPerson(String dni) {
     String registered = null;
 
-    for (Customer data : customerList) {
+    for (Employe data : employeList) {
       if (data.getDni().equals(dni)) {
-        registered = "DNI: " + data.getDni() + " | " + "Email: " + data.getEmail() + " | " + "Telefono: "
-            + data.getPhone() + " | " + "Nombre: " + data.getName() + " | " + "Apellido: " + data.getLastName() + " | "
-            + "Estado: " + data.isStatus();
+        registered = "DNI: " + data.getDni() + " | " + "Tipo de sangre: " + data.getTypeBlood() + " | " + "Nombre: "
+            + data.getName() + " | " + "Apellido: " + data.getLastName() + " | " + "Estado: " + data.isStatus();
         break;
       } else {
         registered = null;
@@ -37,7 +36,7 @@ public class CustomerController extends PersonController<Customer> {
     boolean result = false;
 
     if (dni != null) {
-      for (Customer data : customerList) {
+      for (Employe data : employeList) {
         if (data.getDni().equals(dni)) {
           data.setStatus(status);
           result = true;
