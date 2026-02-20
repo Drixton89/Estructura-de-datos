@@ -2,6 +2,7 @@ package inheritance;
 
 import java.util.Scanner;
 import inheritance.model.Customer;
+import inheritance.model.Employe;
 import inheritance.controller.CustomerController;
 
 // esta es la vista
@@ -18,11 +19,14 @@ public class inheritance {
         case 1:
           managementCustomer();
           break;
+        case 2:
+          managementEmploye();
+          break;
 
         default:
           break;
       }
-    } while (opc < 2);
+    } while (opc < 3);
   }
 
   private static byte menu() {
@@ -30,8 +34,8 @@ public class inheritance {
     System.out.println("\n");
     System.out.println("Menu principal");
     System.out.println("1. Gestionar clientes");
-    System.out.println("2. Salir");
-
+    System.out.println("2. Gestionar empleados");
+    System.out.println("3. Salir");
     option = scan.nextByte();
     return option;
   }
@@ -82,7 +86,7 @@ public class inheritance {
     System.out.println("\n");
     Customer newCustomer = new Customer(email, phone, dni, name, lastName, true);
 
-    if (customerController.registerPerson(newCustomer)) {
+    if (customerController.registerPerson(newCustomer, null)) {
       System.out.println("Cliente registrado exitosamente");
     } else {
       System.out.println("Error al registrar el cliente");
@@ -128,4 +132,54 @@ public class inheritance {
       }
     }
   }
+
+  private static void managementEmploye() {
+    System.out.println("\n Gestionar empleados");
+    System.out.println("\n 1. Registro de empleado");
+    System.out.println("\n 2. Buscar empleado");
+    System.out.println("\n 3. Cambiar para estado del empleado");
+    System.out.println("\n 4. salir");
+
+    byte option = scan.nextByte();
+
+    switch (option) {
+      case 1:
+        registerEmploye();
+        break;
+      case 2:
+        // searchEmploye();
+        break;
+      case 3:
+        // changeStatusEmploye();
+        break;
+      default:
+        break;
+    }
+  }
+
+  private static void registerEmploye() {
+    System.out.println("\n Registrar empleados");
+
+    System.out.println(" Numero de dni: ");
+    String dni = scan.next();
+
+    System.out.println(" Nombre: ");
+    String name = scan.next();
+
+    System.out.println(" Apellido: ");
+    String lastName = scan.next();
+
+    System.out.println(" Tipo de sangre: ");
+    String typeBlood = scan.next();
+
+    System.out.println("\n");
+    Employe newEmploye = new Employe(dni, name, lastName, typeBlood, true);
+
+    if (customerController.registerPerson(null, newEmploye)) {
+      System.out.println("Empleado registrado exitosamente");
+    } else {
+      System.out.println("Error al registrar el empleado");
+    }
+  }
+
 }

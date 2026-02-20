@@ -2,15 +2,20 @@ package inheritance.controller;
 
 import java.util.ArrayList;
 import inheritance.model.Customer;
+import inheritance.model.Employe;
 
 public class CustomerController extends PersonController {
 
   private ArrayList<Customer> customerList = new ArrayList<Customer>();
+  private ArrayList<Employe> employeList = new ArrayList<Employe>();
 
-  public boolean registerPerson(Customer objCustomer) {
+  public boolean registerPerson(Customer objCustomer, Employe employe) {
 
     if (objCustomer != null) {
       customerList.add(objCustomer);
+      return true;
+    } else if (employeList != null) {
+      employeList.add(employe);
       return true;
     } else {
       return false;

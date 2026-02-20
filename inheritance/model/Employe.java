@@ -12,7 +12,7 @@ public class Employe extends Person {
     this.typeBlood = typeBlood;
   }
 
-  public Employe(String typeBlood, String dni, String name, String lastName, boolean status) {
+  public Employe(String dni, String name, String lastName, String typeBlood, boolean status) {
     super(dni, name, lastName, status);
     this.typeBlood = typeBlood;
   }
