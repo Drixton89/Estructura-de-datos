@@ -3,13 +3,16 @@ package inheritance;
 import java.util.Scanner;
 import inheritance.model.Customer;
 import inheritance.model.Employe;
+import inheritance.model.Supplier;
 import inheritance.controller.CustomerController;
 import inheritance.controller.EmployeeController;
+import inheritance.controller.SupplierController;
 
 public class inheritance {
   private static Scanner scan = new Scanner(System.in);
   private static CustomerController customerController = new CustomerController();
   private static EmployeeController employeeController = new EmployeeController();
+  private static SupplierController supplierController = new SupplierController();
 
   public static void main(String[] args) {
     byte opc;
@@ -23,11 +26,14 @@ public class inheritance {
         case 2:
           managementEmploye();
           break;
+        case 3:
+          managementSupplier();
+          break;
 
         default:
           break;
       }
-    } while (opc < 3);
+    } while (opc < 4);
   }
 
   private static byte menu() {
@@ -36,11 +42,13 @@ public class inheritance {
     System.out.println("Menu principal");
     System.out.println("1. Gestionar clientes");
     System.out.println("2. Gestionar empleados");
-    System.out.println("3. Salir");
+    System.out.println("3. Gestionar proveedores");
+    System.out.println("4. Salir");
     option = scan.nextByte();
     return option;
   }
 
+  // gestionar clientes
   private static void managementCustomer() {
 
     System.out.println("\n Gestionar clientes");
@@ -152,7 +160,7 @@ public class inheritance {
         searchEmploye();
         break;
       case 3:
-        // changeStatusEmploye();
+        changeStatusEmploye();
         break;
       default:
         break;
@@ -204,4 +212,115 @@ public class inheritance {
 
   }
 
+  private static void changeStatusEmploye() {
+    boolean employee, updateStatus;
+    String dni, status;
+    do {
+      System.out.println("\n Ingrese numero del dni del empleado a cambiar el estado");
+      dni = scan.next();
+
+      System.out.println("\n Ingrese s para disponible, ingrese n cancelar");
+      status = scan.next();
+    } while (!status.equals("s") && !status.equals("n"));
+
+    if (dni != null) {
+      updateStatus = status.equals("s") ? true : false;
+      employee = employeeController.changeStatus(dni, updateStatus);
+
+      if (employee) {
+        System.out.println("\n El estado del Empleado ha sido actualizado exitosamente\n");
+      } else {
+        System.out.println("\n El estado del Empleado no se ha sido actualizado exitosamente");
+      }
+    }
+  }
+
+  // gestionar proveedores
+  private static void managementSupplier() {
+    System.out.println("\n Gestionar proveedores");
+    System.out.println("\n 1. Registro de proveedor");
+    System.out.println("\n 2. Buscar proveedor");
+    System.out.println("\n 3. Cambiar para estado del proveedor");
+    System.out.println("\n 4. salir");
+
+    byte option = scan.nextByte();
+
+    switch (option) {
+      case 1:
+        registerSupplier();
+        break;
+      case 2:
+        searchSupplier();
+        break;
+      case 3:
+        changeStatusSupplier();
+        break;
+      default:
+        break;
+    }
+  }
+
+  private static void registerSupplier() {
+    System.out.println("\n Registrar proveedores");
+
+    System.out.println(" Numero de dni: ");
+    String dni = scan.next();
+
+    System.out.println(" Nombre: ");
+    String name = scan.next();
+
+    System.out.println(" Apellido: ");
+    String lastName = scan.next();
+
+    System.out.println("\n");
+    Supplier newSupplier = new Supplier(dni, name, lastName, true);
+
+    if (supplierController.registerPerson(newSupplier)) {
+      System.out.println("Proveedor registrado exitosamente");
+    } else {
+      System.out.println("Error al registrar el proveedor");
+    }
+  }
+
+  private static void searchSupplier() {
+    String result = "";
+    System.out.println("\n Buscar proveedor");
+    System.out.println(" Ingrese Numero de dni: ");
+    String dni = scan.next();
+
+    System.out.println("\n");
+
+    result = supplierController.searchPerson(dni);
+
+    if (result != null) {
+      System.out.println("Proveedor encontrado exitosamente \n");
+      System.out.println("El proveedor es: " + result);
+    } else {
+      System.out.println("Proveedor no encontrado");
+    }
+
+  }
+
+  private static void changeStatusSupplier() {
+    boolean supplier, updateStatus;
+    String dni, status;
+    do {
+      System.out.println("\n Ingrese numero del dni del proveedor a cambiar el estado");
+      dni = scan.next();
+
+      System.out.println("\n Ingrese s para disponible, ingrese n cancelar");
+      status = scan.next();
+    } while (!status.equals("s") && !status.equals("n"));
+
+    if (dni != null) {
+      updateStatus = status.equals("s") ? true : false;
+      supplier = supplierController.changeStatus(dni, updateStatus);
+
+      if (supplier) {
+        System.out.println("\n El estado del Proveedor ha sido actualizado exitosamente\n");
+      } else {
+        System.out.println("\n El estado del Proveedor no se ha sido actualizado exitosamente");
+      }
+    }
+  }
 }
