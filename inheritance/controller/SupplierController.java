@@ -2,13 +2,15 @@ package inheritance.controller;
 
 import java.util.ArrayList;
 import inheritance.model.Supplier;
+import inheritance.personDTO.PersonDTO;
 
-public class SupplierController extends PersonController<Supplier> {
+public class SupplierController extends PersonController<PersonDTO<Supplier>> {
   private ArrayList<Supplier> supplierList = new ArrayList<Supplier>();
 
-  public boolean registerPerson(Supplier objSupplier) {
-    if (objSupplier != null) {
-      supplierList.add(objSupplier);
+  public boolean registerPerson(PersonDTO<Supplier> objSupplier) {
+
+    if (objSupplier.getData() != null) {
+      supplierList.add(objSupplier.getData());
       return true;
     } else {
       return false;

@@ -7,6 +7,7 @@ import inheritance.model.Supplier;
 import inheritance.controller.CustomerController;
 import inheritance.controller.EmployeeController;
 import inheritance.controller.SupplierController;
+import inheritance.personDTO.PersonDTO;
 
 public class inheritance {
   private static Scanner scan = new Scanner(System.in);
@@ -94,8 +95,9 @@ public class inheritance {
 
     System.out.println("\n");
     Customer newCustomer = new Customer(email, phone, dni, name, lastName, true);
+    PersonDTO<Customer> customerDTO = new PersonDTO<Customer>(newCustomer);
 
-    if (customerController.registerPerson(newCustomer)) {
+    if (customerController.registerPerson(customerDTO)) {
       System.out.println("Cliente registrado exitosamente");
     } else {
       System.out.println("Error al registrar el cliente");
@@ -184,8 +186,9 @@ public class inheritance {
 
     System.out.println("\n");
     Employe newEmploye = new Employe(dni, name, lastName, typeBlood, true);
+    PersonDTO<Employe> peopleDTO = new PersonDTO<Employe>(newEmploye);
 
-    if (employeeController.registerPerson(newEmploye)) {
+    if (employeeController.registerPerson(peopleDTO)) {
       System.out.println("Empleado registrado exitosamente");
     } else {
       System.out.println("Error al registrar el empleado");
@@ -274,8 +277,9 @@ public class inheritance {
 
     System.out.println("\n");
     Supplier newSupplier = new Supplier(dni, name, lastName, true);
+    PersonDTO<Supplier> peopleDTO = new PersonDTO<Supplier>(newSupplier);
 
-    if (supplierController.registerPerson(newSupplier)) {
+    if (supplierController.registerPerson(peopleDTO)) {
       System.out.println("Proveedor registrado exitosamente");
     } else {
       System.out.println("Error al registrar el proveedor");

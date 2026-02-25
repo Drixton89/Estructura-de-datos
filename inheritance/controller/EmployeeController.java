@@ -2,15 +2,16 @@ package inheritance.controller;
 
 import java.util.ArrayList;
 import inheritance.model.Employe;
+import inheritance.personDTO.PersonDTO;
 
-public class EmployeeController extends PersonController<Employe> {
+public class EmployeeController extends PersonController<PersonDTO<Employe>> {
 
   private ArrayList<Employe> employeList = new ArrayList<Employe>();
 
-  public boolean registerPerson(Employe objEmployee) {
+  public boolean registerPerson(PersonDTO<Employe> objEmployee) {
 
-    if (objEmployee != null) {
-      employeList.add(objEmployee);
+    if (objEmployee.getData() != null) {
+      employeList.add(objEmployee.getData());
       return true;
     } else {
       return false;
