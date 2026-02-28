@@ -64,6 +64,7 @@ public class simpleList {
 
   private static void showList() {
     int count = 0;
+
     if (list.show() == 0) {
       System.out.println("La lista esta vacia");
     } else {
