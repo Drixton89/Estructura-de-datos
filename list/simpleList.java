@@ -16,11 +16,12 @@ public class simpleList {
       switch (opc) {
         case 1: {
           insertHead();
+          break;
         }
         case 2: {
           showList();
-        }
           break;
+        }
 
         default:
           break;
@@ -34,7 +35,8 @@ public class simpleList {
     byte opc;
     System.out.println("\n Gestionar lista simples");
     System.out.println("1. Insertar a la cabeza de la lista");
-    System.out.print("2. Salir \n");
+    System.out.println("2. Mostrar la lista");
+    System.out.println("3. Salir \n");
     opc = scan.nextByte();
     return opc;
   }
@@ -61,18 +63,15 @@ public class simpleList {
   }
 
   private static void showList() {
-    int result = 0;
-
-    result = list.show();
-
-    // while () {
-
-    // }
-
-    if (result == 0) {
+    if (list.show() == 0) {
       System.out.println("La lista está vacía");
     } else {
-      System.out.println("La lista tiene " + result + " nodos");
+      list.setCurrentPte(list.getFirstPte());
+
+      while (list.getCurrentPte() != null) {
+        System.out.println("El valor del nodo es: " + list.getCurrentPte().getInfo());
+        list.setCurrentPte(list.getCurrentPte().getNextPte());
+      }
     }
   }
 

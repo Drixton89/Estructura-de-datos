@@ -2,34 +2,35 @@ package list.controller;
 
 import list.model.Node;
 
-/**
- * Clase que controla las operaciones de la lista enlazada.
- */
 public class List {
   private Node firstPte; // Puntero al primer nodo de la lista
   private Node currentPte; // Puntero auxiliar (actual)
 
-  /**
-   * Verifica si la lista está vacía.
-   * 
-   * @return true si el primer puntero es null, false de lo contrario.
-   */
+  public Node getFirstPte() {
+    return firstPte;
+  }
+
+  public void setFirstPte(Node firstPte) {
+    this.firstPte = firstPte;
+  }
+
+  public Node getCurrentPte() {
+    return currentPte;
+  }
+
+  public void setCurrentPte(Node currentPte) {
+    this.currentPte = currentPte;
+  }
+
   private boolean empty() {
     return this.firstPte == null;
   }
 
-  /** Constructor de la clase List. Inicializa los punteros en null. */
   public List() {
     this.currentPte = this.firstPte = null;
   }
 
-  /**
-   * Inserta un nuevo nodo al inicio de la lista.
-   * 
-   * @param value El valor entero a insertar.
-   * @return boolean indicando si la operación fue exitosa.
-   * @throws Exception Si ocurre un error durante la creación del nodo.
-   */
+  // Inserta un nuevo nodo al inicio de la lista.
   public boolean insertHead(int value) throws Exception {
     boolean result = true;
 
@@ -65,13 +66,8 @@ public class List {
 
     if (this.empty()) {
       result = 0;
-      return result;
     } else {
-      this.currentPte = this.firstPte;
-      while (this.currentPte != null) { // hacer while en la vista 0.5,
-        result = this.currentPte.getInfo();
-        this.currentPte = this.currentPte.getNextPte();
-      }
+      result = 1;
     }
     return result;
   }
