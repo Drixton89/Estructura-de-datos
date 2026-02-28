@@ -30,29 +30,24 @@ public class List {
     this.currentPte = this.firstPte = null;
   }
 
-  // Inserta un nuevo nodo al inicio de la lista.
+  // Inserta un nuevo nodo al inicio de la lista
   public boolean insertHead(int value) throws Exception {
     boolean result = true;
 
     try {
-      // 1. Crear un nuevo nodo
       Node newNode = new Node();
-      // 2. Asignar el valor al nuevo nodo
       newNode.setInfo(value);
 
-      // 3. Establecer el enlace del nuevo nodo
       if (this.empty()) {
-        // Si la lista está vacía, el siguiente es null
         newNode.setNextPte(null);
       } else {
         // Si no está vacía, el siguiente es el que era antes el primero
         newNode.setNextPte(this.firstPte);
       }
 
-      // 4. Actualizar el puntero de la lista para que apunte al nuevo nodo
+      // Actualizar el puntero de la lista para que apunte al nuevo nodo
       this.currentPte = this.firstPte = newNode;
     } catch (Exception e) {
-      // Lanzar excepción en caso de error
       throw new Exception("Error al ingresar el nodo!...");
     }
 

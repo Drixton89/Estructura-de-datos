@@ -63,15 +63,19 @@ public class simpleList {
   }
 
   private static void showList() {
+    int count = 0;
     if (list.show() == 0) {
-      System.out.println("La lista está vacía");
+      System.out.println("La lista esta vacia");
     } else {
+
       list.setCurrentPte(list.getFirstPte());
 
       while (list.getCurrentPte() != null) {
         System.out.println("El valor del nodo es: " + list.getCurrentPte().getInfo());
         list.setCurrentPte(list.getCurrentPte().getNextPte());
+        count++;
       }
+      System.out.println("El numero de nodos es: " + count);
     }
   }
 
