@@ -30,7 +30,6 @@ public class List {
     this.currentPte = this.firstPte = null;
   }
 
-  // Inserta un nuevo nodo al inicio de la lista
   public boolean insertHead(int value) throws Exception {
     boolean result = true;
 
@@ -52,6 +51,33 @@ public class List {
     }
 
     return result;
+  }
+
+  public boolean insertFinal(int value) {
+    boolean result = true;
+
+    try {
+      Node newNode = new Node();
+      newNode.setInfo(value);
+
+      if (this.empty()) {
+        this.currentPte = this.firstPte = newNode;
+      } else {
+        initializeCurrentPte();
+        while (this.currentPte.getNextPte() != null) {
+          this.currentPte = this.currentPte.getNextPte();
+        }
+        this.currentPte.setNextPte(newNode);
+      }
+
+    } catch (Exception e) {
+    }
+    return result;
+  }
+
+  public void initializeCurrentPte() {
+    this.currentPte = this.firstPte;
+
   }
 
   public int show() {

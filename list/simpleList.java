@@ -22,12 +22,18 @@ public class simpleList {
           showList();
           break;
         }
+        // case 3 resursividad
+        // case 4 salir
+        case 3: {
+          insertFinal();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 3);
+    } while (opc < 4);
 
   }
 
@@ -36,7 +42,8 @@ public class simpleList {
     System.out.println("\n Gestionar lista simples");
     System.out.println("1. Insertar a la cabeza de la lista");
     System.out.println("2. Mostrar la lista");
-    System.out.println("3. Salir \n");
+    System.out.println("3. Insertar al final de la lista");
+    System.out.println("4. Salir \n");
     opc = scan.nextByte();
     return opc;
   }
@@ -51,6 +58,27 @@ public class simpleList {
 
       try {
         if (list.insertHead(value)) {
+          System.out.println("Nodo insertado correctamente");
+        }
+      } catch (Exception e) {
+        System.out.println("Error al insertar el nodo" + e.getMessage());
+      }
+      System.out.println("¿Desea ingresar otro valor?,  S para si N para no");
+      sw = scan.next().toUpperCase().charAt(0);
+
+    } while (sw == 'S');
+  }
+
+  private static void insertFinal() {
+    int value;
+    char sw;
+
+    do {
+      System.out.print("\n Ingrese el valor a insertar al final de la lista: ");
+      value = scan.nextInt();
+
+      try {
+        if (list.insertFinal(value)) {
           System.out.println("Nodo insertado correctamente");
         }
       } catch (Exception e) {
@@ -81,3 +109,6 @@ public class simpleList {
   }
 
 }
+
+// hacer recursividad, crear menu opcion 3, 4 salir
+// agregar metodo de delete nodo
