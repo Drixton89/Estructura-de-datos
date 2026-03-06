@@ -3,13 +3,11 @@ package backend;
 import java.util.ArrayList;
 
 public class Booking {
-  // atribute is private or public
   private int numberBooking;
   private String dateBooking;
   private boolean status = true;
   private byte numberPeople;
 
-  // getter
   public int getNumberBooking() {
     return numberBooking;
   }
@@ -26,7 +24,6 @@ public class Booking {
     return numberPeople;
   }
 
-  // setter
   public void setNumberBooking(int numberBooking) {
     this.numberBooking = numberBooking;
   }
@@ -64,7 +61,6 @@ public class Booking {
 
   private static ArrayList<Booking> bookingList = new ArrayList<Booking>();
 
-  // metodo para registrar la reserva
   public boolean Register(Booking booking) {
 
     if (booking != null) {
@@ -75,10 +71,9 @@ public class Booking {
     }
   }
 
-  // metodo para buscar la reserva
   public String searchBooking(int numberBooking) {
     String result = "";
-    
+
     for (Booking booking : bookingList) {
       if (booking.getNumberBooking() == numberBooking) {
 
@@ -93,7 +88,6 @@ public class Booking {
     return result;
   }
 
-  // metodo para actualizar la reserva
   public String updateBooking(int numberBooking, String dateBooking, byte numberPeople) {
 
     for (Booking booking : bookingList) {
@@ -111,21 +105,21 @@ public class Booking {
     return "No se encontro la reserva";
   }
 
-  // metodo para cancelar la reserva
-  public String cancelBooking (int IdBooking){
+  public String cancelBooking(int IdBooking) {
 
     String result = "";
 
-    for( Booking booking : bookingList ){
-      if(booking.getNumberBooking() == IdBooking){
+    for (Booking booking : bookingList) {
+      if (booking.getNumberBooking() == IdBooking) {
 
         booking.setStatus(false);
-        System.out.println("\n La reserva :" + IdBooking + " ha sido cancelada" );
-        System.out.println("\n La reserva con fecha de :" + booking.getDateBooking() + " queda en estado " + (booking.getStatus() == false ? "cancelado" : "Disponible"));
+        System.out.println("\n La reserva :" + IdBooking + " ha sido cancelada");
+        System.out.println("\n La reserva con fecha de :" + booking.getDateBooking() + " queda en estado "
+            + (booking.getStatus() == false ? "cancelado" : "Disponible"));
         result = "Reserva cancelada";
       }
     }
-    return  result;
+    return result;
   }
 
 }
