@@ -137,4 +137,32 @@ public class List {
     return result;
   }
 
+  public boolean insertBefore(int currentValueNode, int newValue) {
+    boolean result = false;
+    Node previousNode = null;
+
+    if (this.empty()) {
+      return result;
+    } else {
+      initializeCurrentPte();
+      Node newNode = new Node();
+
+      while (this.currentPte != null) {
+        if (this.currentPte.getInfo() == currentValueNode) {
+          newNode.setInfo(newValue);
+          newNode.setNextPte(this.currentPte);
+          previousNode.setNextPte(newNode);
+
+          result = true;
+          return result;
+        }
+        previousNode = this.currentPte;
+        this.currentPte = this.currentPte.getNextPte();
+      }
+    }
+
+    return result;
+
+  }
+
 }

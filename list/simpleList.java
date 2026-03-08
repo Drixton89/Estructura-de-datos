@@ -34,12 +34,16 @@ public class simpleList {
           destructor();
           break;
         }
+        case 6: {
+          insertBefore();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 6);
+    } while (opc < 7);
 
   }
 
@@ -51,7 +55,8 @@ public class simpleList {
     System.out.println("3. Insertar al final de la lista");
     System.out.println("4. Ingrese para Eliminar nodo");
     System.out.println("5. Para destruir la lista");
-    System.out.println("6. Salir \n");
+    System.out.println("6. Para insertar antes de un nodo");
+    System.out.println("7. Salir \n");
     opc = scan.nextByte();
     return opc;
   }
@@ -138,12 +143,27 @@ public class simpleList {
     }
   }
 
+  private static void insertBefore() {
+    int currentValueNode, newValue;
+
+    System.out.println("\n Insertar antes de un nodo");
+    System.out.println("\n Ingresa el valor que desea insertar: ");
+    newValue = scan.nextInt();
+
+    System.out.println("\n Ingresa el valor del nodo donde desea insertar: ");
+    currentValueNode = scan.nextInt();
+
+    if (list.insertBefore(currentValueNode, newValue)) {
+      System.out.println("Nodo insertado correctamente");
+    } else {
+      System.out.println("La lista esta vacia o el nodo no fue encontrado");
+    }
+  }
 }
 
 // hacer recursividad, crear menu opcion 3, 4 salir
 
 // taller
-// * Método destructor
 // * Método insertar antes
 // * Método insertar despues
 // * Eliminar al inicio
