@@ -22,10 +22,12 @@ public class simpleList {
           showList();
           break;
         }
-        // case 3 resursividad
-        // case 4 salir
         case 3: {
           insertFinal();
+          break;
+        }
+        case 4: {
+          deleteNode();
           break;
         }
 
@@ -33,7 +35,7 @@ public class simpleList {
           break;
       }
 
-    } while (opc < 4);
+    } while (opc < 5);
 
   }
 
@@ -43,7 +45,8 @@ public class simpleList {
     System.out.println("1. Insertar a la cabeza de la lista");
     System.out.println("2. Mostrar la lista");
     System.out.println("3. Insertar al final de la lista");
-    System.out.println("4. Salir \n");
+    System.out.println("4. Ingrese para Eliminar nodo");
+    System.out.println("5. Salir \n");
     opc = scan.nextByte();
     return opc;
   }
@@ -108,7 +111,28 @@ public class simpleList {
     }
   }
 
+  private static void deleteNode() {
+    int valueNode;
+
+    System.out.println("\n Eliminar nodo");
+    System.out.println("\n Ingresa el valor del nodo a Eliminar: ");
+    valueNode = scan.nextInt();
+    if (list.deleteNode(valueNode)) {
+      System.out.println("Nodo eliminado correctamente");
+    } else {
+      System.out.println("La lista esta vacia o el nodo no fue encontrado");
+    }
+
+  }
+
 }
 
 // hacer recursividad, crear menu opcion 3, 4 salir
 // agregar metodo de delete nodo
+
+// taller
+// * Método destructor
+// * Método insertar antes
+// * Método insertar despues
+// * Eliminar al inicio
+// * Eliminar último

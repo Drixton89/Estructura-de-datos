@@ -93,4 +93,37 @@ public class List {
     return result;
   }
 
+  public boolean deleteNode(int valueNode) {
+    boolean result = false;
+    Node previousNode = this.firstPte;
+
+    if (this.empty()) {
+      result = false;
+      return result;
+    } else {
+      initializeCurrentPte();
+      if (this.currentPte.getInfo() == valueNode && this.currentPte.getNextPte() == null) {
+        this.setCurrentPte(null);
+        this.setFirstPte(null);
+        result = true;
+      }
+
+      while (this.currentPte.getNextPte() != null) {
+
+        System.out.println("currentgetinfo : " + this.currentPte.getInfo());
+
+        if (this.currentPte.getInfo() == valueNode) {
+          previousNode.setNextPte(this.currentPte.getNextPte());
+          this.setCurrentPte(previousNode);
+          result = true;
+        }
+        previousNode = this.currentPte;
+        this.currentPte = this.currentPte.getNextPte();
+      }
+
+    }
+
+    return result;
+  }
+
 }
