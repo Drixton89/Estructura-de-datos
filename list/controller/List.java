@@ -123,4 +123,18 @@ public class List {
     return result;
   }
 
+  public boolean destructor() {
+    boolean result = false;
+    System.out.println("Metodo destructor");
+
+    if (this.empty()) {
+      result = true;
+      return result;
+    } else {
+      this.firstPte = this.currentPte = null;
+      result = true;
+    }
+    return result;
+  }
+
 }
