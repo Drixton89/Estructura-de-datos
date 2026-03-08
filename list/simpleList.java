@@ -186,6 +186,5 @@ public class simpleList {
 // hacer recursividad, crear menu opcion 3, 4 salir
 
 // taller
-// * Método insertar despues
 // * Eliminar al inicio
 // * Eliminar último

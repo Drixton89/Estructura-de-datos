@@ -145,13 +145,18 @@ public class List {
       return result;
     } else {
       initializeCurrentPte();
-      Node newNode = new Node();
 
       while (this.currentPte != null) {
         if (this.currentPte.getInfo() == currentValueNode) {
+          Node newNode = new Node();
           newNode.setInfo(newValue);
           newNode.setNextPte(this.currentPte);
-          previousNode.setNextPte(newNode);
+
+          if (previousNode == null) {
+            this.firstPte = newNode;
+          } else {
+            previousNode.setNextPte(newNode);
+          }
 
           result = true;
           return result;
