@@ -165,4 +165,29 @@ public class List {
 
   }
 
+  public boolean insertAfter(int currentValueNode, int newValue) {
+    boolean result = false;
+
+    if (this.empty()) {
+      return result;
+    } else {
+      initializeCurrentPte();
+
+      while (this.currentPte != null) {
+        if (this.currentPte.getInfo() == currentValueNode) {
+          Node newNode = new Node();
+          newNode.setInfo(newValue);
+          newNode.setNextPte(this.currentPte.getNextPte());
+          this.currentPte.setNextPte(newNode);
+          result = true;
+          return result;
+        }
+        this.currentPte = this.currentPte.getNextPte();
+      }
+    }
+
+    return result;
+
+  }
+
 }
