@@ -95,32 +95,29 @@ public class List {
 
   public boolean deleteNode(int valueNode) {
     boolean result = false;
-    Node previousNode = this.firstPte;
+    Node previousNode = null;
 
     if (this.empty()) {
       result = false;
       return result;
-    } else {
-      initializeCurrentPte();
-      if (this.currentPte.getInfo() == valueNode && this.currentPte.getNextPte() == null) {
-        this.setCurrentPte(null);
-        this.setFirstPte(null);
+    }
+
+    initializeCurrentPte();
+
+    if (this.currentPte.getInfo() == valueNode) {
+      this.setFirstPte(currentPte.getNextPte());
+      result = true;
+      return result;
+    }
+
+    while (this.currentPte != null) {
+      if (this.currentPte.getInfo() == valueNode) {
+        previousNode.setNextPte(this.currentPte.getNextPte());
         result = true;
+        return result;
       }
-
-      while (this.currentPte.getNextPte() != null) {
-
-        System.out.println("currentgetinfo : " + this.currentPte.getInfo());
-
-        if (this.currentPte.getInfo() == valueNode) {
-          previousNode.setNextPte(this.currentPte.getNextPte());
-          this.setCurrentPte(previousNode);
-          result = true;
-        }
-        previousNode = this.currentPte;
-        this.currentPte = this.currentPte.getNextPte();
-      }
-
+      previousNode = this.currentPte;
+      this.currentPte = this.currentPte.getNextPte();
     }
 
     return result;
