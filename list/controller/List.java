@@ -213,6 +213,7 @@ public class List {
       return true;
     }
     initializeCurrentPte();
+
     while (this.currentPte.getNextPte().getNextPte() != null) {
       this.currentPte = this.currentPte.getNextPte();
     }
