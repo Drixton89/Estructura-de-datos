@@ -195,4 +195,29 @@ public class List {
 
   }
 
+  public boolean deleteFirst() {
+    if (this.empty()) {
+      return false;
+    }
+    this.firstPte = this.firstPte.getNextPte();
+    this.currentPte = this.firstPte;
+    return true;
+  }
+
+  public boolean deleteLast() {
+    if (this.empty()) {
+      return false;
+    }
+    if (this.firstPte.getNextPte() == null) {
+      this.firstPte = this.currentPte = null;
+      return true;
+    }
+    initializeCurrentPte();
+    while (this.currentPte.getNextPte().getNextPte() != null) {
+      this.currentPte = this.currentPte.getNextPte();
+    }
+    this.currentPte.setNextPte(null);
+    return true;
+  }
+
 }
