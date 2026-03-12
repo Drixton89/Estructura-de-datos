@@ -96,4 +96,19 @@ public class DoubleListController {
     return result;
   }
 
+  public boolean showList() {
+    boolean result = false;
+    Node tempPte = this.firstPte;
+    if (this.empty()) {
+      result = false;
+    } else {
+      while (tempPte != null) {
+        System.out.println("el valor del nodo es: " + tempPte.getInfo());
+        tempPte = tempPte.getRightPte();
+      }
+      result = true;
+    }
+    return result;
+  }
+
 }

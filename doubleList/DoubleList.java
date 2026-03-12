@@ -19,12 +19,16 @@ public class DoubleList {
           insertData();
           break;
         }
+        case 2: {
+          showDoubleList();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 2);
+    } while (opc < 3);
 
   }
 
@@ -33,7 +37,8 @@ public class DoubleList {
 
     System.out.println("Menu de doble lista");
     System.out.println("1. Insertar datos a la vista");
-    System.out.println("2. Salir");
+    System.out.println("2. Mostrar lista");
+    System.out.println("3. Salir");
     opc = scan.nextByte();
     return opc;
 
@@ -50,21 +55,16 @@ public class DoubleList {
       System.out.println("ingrese C para insertar el dato a la inicio o E para ingresar al final de la lista ");
       opc = scan.next().toUpperCase().charAt(0);
 
-      if (opc == 'C') {
-        try {
+      try {
+        if (opc == 'C') {
           listDouble.insertLeft(value);
-        } catch (Exception e) {
-          System.out.println("Error al insertar el dato");
-        }
-      } else if (opc == 'E') {
-        try {
+        } else if (opc == 'E') {
           listDouble.insertRight(value);
-        } catch (Exception e) {
-          System.out.println("Error al insertar el dato");
+        } else {
+          System.out.println("ingrese un valor correcto ");
         }
-
-      } else {
-        System.out.println("ingrese un valor correcto ");
+      } catch (Exception e) {
+        System.out.println("Error al insertar el dato");
       }
 
       System.out.println("Desea ingresar otro dato, s para si n para no");
@@ -73,4 +73,15 @@ public class DoubleList {
 
   }
 
+  private static void showDoubleList() {
+
+    System.out.println("Mostrar lista doble");
+
+    if (listDouble.showList()) {
+      listDouble.showList();
+    } else {
+      System.out.println("La lista esta vacia");
+    }
+
+  }
 }
