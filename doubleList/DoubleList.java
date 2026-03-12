@@ -57,6 +57,14 @@ public class DoubleList {
           System.out.println("Error al insertar el dato");
         }
       } else if (opc == 'E') {
+        try {
+          listDouble.insertRight(value);
+        } catch (Exception e) {
+          System.out.println("Error al insertar el dato");
+        }
+
+      } else {
+        System.out.println("ingrese un valor correcto ");
       }
 
       System.out.println("Desea ingresar otro dato, s para si n para no");

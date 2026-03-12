@@ -70,4 +70,30 @@ public class DoubleListController {
     return result;
   }
 
+  public boolean insertRight(int value) {
+    boolean result = false;
+
+    try {
+      Node newNode = new Node();
+      newNode.setInfo(value);
+
+      if (this.empty()) {
+        this.lastPte = this.firstPte = newNode;
+        initializeCurrentPte();
+        result = true;
+
+      } else {
+        newNode.setLeftPte(this.lastPte);
+        this.lastPte.setRightPte(newNode);
+        this.lastPte = newNode;
+        result = true;
+      }
+
+    } catch (Exception e) {
+      result = false;
+    }
+
+    return result;
+  }
+
 }
