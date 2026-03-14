@@ -98,14 +98,18 @@ public class DoubleListController {
 
   public boolean showList() {
     boolean result = false;
-    Node tempPte = this.firstPte;
+    int counter = 0;
+
     if (this.empty()) {
       result = false;
     } else {
-      while (tempPte != null) {
-        System.out.println("el valor del nodo es: " + tempPte.getInfo());
-        tempPte = tempPte.getRightPte();
+      initializeCurrentPte();
+      while (this.currentPte != null) {
+        System.out.println("el valor del nodo es: " + this.currentPte.getInfo());
+        this.currentPte = this.currentPte.getRightPte();
+        counter++;
       }
+      System.out.println("el numero de nodos es: " + counter);
       result = true;
     }
     return result;

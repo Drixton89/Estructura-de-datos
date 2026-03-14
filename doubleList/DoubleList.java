@@ -85,3 +85,6 @@ public class DoubleList {
 
   }
 }
+
+// aplciar mostrar recursivo en la vista
+// delete nodo
