@@ -107,4 +107,44 @@ public class DoubleListController {
     return result;
   }
 
+  public boolean deleteNode(int value) {
+    if (this.empty()) {
+      return false;
+    }
+
+    // Buscar el nodo con el valor
+    Node auxiliarNode = this.firstPte;
+    while (auxiliarNode != null && auxiliarNode.getInfo() != value) {
+      auxiliarNode = auxiliarNode.getRightPte();
+    }
+
+    // No se encontró
+    if (auxiliarNode == null) {
+      return false;
+    }
+
+    // Caso 1: único nodo en la lista
+    if (auxiliarNode == this.firstPte && auxiliarNode == this.lastPte) {
+      this.firstPte = this.lastPte = null;
+
+      // Caso 2: es el primer nodo
+    } else if (auxiliarNode == this.firstPte) {
+      this.firstPte = auxiliarNode.getRightPte();
+      this.firstPte.setLeftPte(null);
+
+      // Caso 3: es el último nodo
+    } else if (auxiliarNode == this.lastPte) {
+      this.lastPte = auxiliarNode.getLeftPte();
+      this.lastPte.setRightPte(null);
+
+      // Caso 4: nodo en el medio
+    } else {
+      auxiliarNode.getLeftPte().setRightPte(auxiliarNode.getRightPte());
+      auxiliarNode.getRightPte().setLeftPte(auxiliarNode.getLeftPte());
+    }
+
+    this.currentPte = this.firstPte;
+    return true;
+  }
+
 }

@@ -31,12 +31,16 @@ public class DoubleList {
           showReverse();
           break;
         }
+        case 5: {
+          deleteNode();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 5);
+    } while (opc < 6);
 
   }
 
@@ -48,7 +52,8 @@ public class DoubleList {
     System.out.println("2. Mostrar lista");
     System.out.println("3. Mostrar lista recursivamente");
     System.out.println("4. Mostrar lista de derecha a izquierda");
-    System.out.println("5. Salir");
+    System.out.println("5. Eliminar nodo");
+    System.out.println("6. Salir");
     opc = scan.nextByte();
     return opc;
 
@@ -132,6 +137,20 @@ public class DoubleList {
     }
   }
 
-}
+  private static void deleteNode() {
+    if (!listDouble.showList()) {
+      System.out.println("La lista esta vacia");
+      return;
+    }
 
-// delete nodo
+    System.out.println("Ingrese el valor del nodo a eliminar: ");
+    int value = scan.nextInt();
+
+    if (listDouble.deleteNode(value)) {
+      System.out.println("Nodo con valor " + value + " eliminado correctamente");
+    } else {
+      System.out.println("No se encontro el valor " + value + " en la lista");
+    }
+  }
+
+}
