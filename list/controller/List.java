@@ -40,11 +40,9 @@ public class List {
       if (this.empty()) {
         newNode.setNextPte(null);
       } else {
-        // Si no está vacía, el siguiente es el que era antes el primero
         newNode.setNextPte(this.firstPte);
       }
 
-      // Actualizar el puntero de la lista para que apunte al nuevo nodo
       this.currentPte = this.firstPte = newNode;
     } catch (Exception e) {
       throw new Exception("Error al ingresar el nodo!...");

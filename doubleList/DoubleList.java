@@ -27,12 +27,16 @@ public class DoubleList {
           showRecursive();
           break;
         }
+        case 4: {
+          showReverse();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 4);
+    } while (opc < 5);
 
   }
 
@@ -43,7 +47,8 @@ public class DoubleList {
     System.out.println("1. Insertar datos a la vista");
     System.out.println("2. Mostrar lista");
     System.out.println("3. Mostrar lista recursivamente");
-    System.out.println("4. Salir");
+    System.out.println("4. Mostrar lista de derecha a izquierda");
+    System.out.println("5. Salir");
     opc = scan.nextByte();
     return opc;
 
@@ -111,6 +116,22 @@ public class DoubleList {
     System.out.println("el valor del nodo es: " + currentPte.getInfo());
     triggerRecursive(currentPte.getRightPte());
   }
+
+  private static void showReverse() {
+    listDouble.initializeCurrentPte();
+
+    if (!listDouble.showList()) {
+      System.out.println("La lista esta vacia");
+      return;
+    } else {
+      listDouble.setCurrentPte(listDouble.getLastPte());
+      while (listDouble.getCurrentPte() != null) {
+        System.out.println("el valor del node es  " + listDouble.getCurrentPte().getInfo());
+        listDouble.setCurrentPte(listDouble.getCurrentPte().getLeftPte());
+      }
+    }
+  }
+
 }
 
 // delete nodo
