@@ -74,16 +74,33 @@ public class DoubleList {
   }
 
   private static void showDoubleList() {
-
+    int counter = 0;
     System.out.println("Mostrar lista doble");
 
     if (listDouble.showList()) {
-      listDouble.showList();
+      listDouble.initializeCurrentPte();
+      while (listDouble.getCurrentPte() != null) {
+        System.out.println("el valor del nodo es: " + listDouble.getCurrentPte().getInfo());
+        listDouble.setCurrentPte(listDouble.getCurrentPte().getRightPte());
+        counter++;
+      }
+      System.out.println("el numero de nodos es: " + counter);
     } else {
       System.out.println("La lista esta vacia");
     }
 
   }
+
+  // private static void showRecursive() {
+  // System.out.println("Mostrar recursiva");
+
+  // if (listDouble.showList()) {
+  // System.out.println("la lista esta vacia");
+  // } else {
+
+  // }
+
+  // }
 }
 
 // aplciar mostrar recursivo en la vista
