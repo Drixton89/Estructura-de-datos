@@ -2,7 +2,7 @@ package doubleList;
 
 import doubleList.controller.DoubleListController;
 import java.util.Scanner;
-import list.controller.List;
+import doubleList.model.Node;
 
 public class DoubleList {
   private static Scanner scan = new Scanner(System.in);
@@ -23,22 +23,27 @@ public class DoubleList {
           showDoubleList();
           break;
         }
+        case 3: {
+          showRecursive();
+          break;
+        }
 
         default:
           break;
       }
 
-    } while (opc < 3);
+    } while (opc < 4);
 
   }
 
   private static byte menu() {
     byte opc;
 
-    System.out.println("Menu de doble lista");
+    System.out.println("\n Menu de doble lista");
     System.out.println("1. Insertar datos a la vista");
     System.out.println("2. Mostrar lista");
-    System.out.println("3. Salir");
+    System.out.println("3. Mostrar lista recursivamente");
+    System.out.println("4. Salir");
     opc = scan.nextByte();
     return opc;
 
@@ -91,17 +96,21 @@ public class DoubleList {
 
   }
 
-  // private static void showRecursive() {
-  // System.out.println("Mostrar recursiva");
+  private static void showRecursive() {
+    listDouble.initializeCurrentPte();
+    if (!listDouble.showList()) {
+      System.out.println("La lista esta vacia");
+      return;
+    }
+    triggerRecursive(listDouble.getCurrentPte());
+  }
 
-  // if (listDouble.showList()) {
-  // System.out.println("la lista esta vacia");
-  // } else {
-
-  // }
-
-  // }
+  private static void triggerRecursive(Node currentPte) {
+    if (currentPte == null)
+      return;
+    System.out.println("el valor del nodo es: " + currentPte.getInfo());
+    triggerRecursive(currentPte.getRightPte());
+  }
 }
 
-// aplciar mostrar recursivo en la vista
 // delete nodo
