@@ -58,4 +58,14 @@ public class QueueController {
     }
     return result;
   }
+
+  public int showLast(){
+    int result = -1;
+    if(isEmpty()){
+      result = -1;
+    }else{
+      result = this.lastPte.getInfo();
+    }
+    return result;
+  }
 }
