@@ -14,7 +14,8 @@ public class Queue {
       System.out.println("\n 1. Insertar datos");
       System.out.println("2. Mostrar el primer dato");
       System.out.println("3. Mostrar el ultimo dato");
-      System.out.println("4. Salir");
+      System.out.println("4. Eliminar el primer dato");
+      System.out.println("5. Salir");
       opc = scan.nextByte();
 
       switch (opc) {
@@ -26,6 +27,9 @@ public class Queue {
           break;
         case 3:
           showLast();
+          break;
+        case 4:
+          unQueue();
           break;
       }
     } while (opc < 4);
@@ -55,6 +59,15 @@ public class Queue {
     int data = objQueue.showLast();
     if (data != -1) {
       System.out.println("El ultimo dato es: " + data);
+    } else {
+      System.out.println("La cola esta vacia");
+    }
+  }
+
+  private static void unQueue(){
+    int data = objQueue.unQueue();
+    if (data != -1) {
+      System.out.println("Dato eliminado correctamente");
     } else {
       System.out.println("La cola esta vacia");
     }

@@ -68,4 +68,15 @@ public class QueueController {
     }
     return result;
   }
+
+  public int unQueue(){
+    int result = -1;
+    if(isEmpty()){
+      result = -1;
+    }else{
+      result = this.firstPte.getInfo();
+      this.firstPte = this.firstPte.getNext();
+    }
+    return result;
+  }
 }
