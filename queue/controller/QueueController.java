@@ -49,34 +49,53 @@ public class QueueController {
     return result;
   }
 
-  public int showFirst(){
+  public int showFirst() {
     int result = -1;
-    if(isEmpty()){
+    if (isEmpty()) {
       result = -1;
-    }else{
+    } else {
       result = this.firstPte.getInfo();
     }
     return result;
   }
 
-  public int showLast(){
+  public int showLast() {
     int result = -1;
-    if(isEmpty()){
+    if (isEmpty()) {
       result = -1;
-    }else{
+    } else {
       result = this.lastPte.getInfo();
     }
     return result;
   }
 
-  public int unQueue(){
+  public int unQueue() {
     int result = -1;
-    if(isEmpty()){
+    if (isEmpty()) {
       result = -1;
-    }else{
+    } else {
+
       result = this.firstPte.getInfo();
+
+      if (this.firstPte == this.lastPte) {
+        this.lastPte = null;
+      }
+
       this.firstPte = this.firstPte.getNext();
+
     }
     return result;
   }
+
+  public int showQueueOriginal(){
+    int result = -1;
+    Node temp = this.firstPte;
+    
+    while (temp != null) {
+      result = temp.getInfo();
+      temp = temp.getNext();
+    }
+    return result;
+  }
+
 }
