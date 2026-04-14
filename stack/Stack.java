@@ -2,10 +2,12 @@ package stack;
 
 import stack.controller.StackController;
 import java.util.Scanner;
+import stack.model.Node;
 
 public class Stack {
 
   static private StackController objStack = new StackController();
+  static private StackController objBackStack = new StackController();
   static private Scanner scan = new Scanner(System.in);
 
   public static void main(String[] args) {
@@ -15,8 +17,9 @@ public class Stack {
       System.out.println("\n Menu");
       System.out.println("1. Para insertar un elemento");
       System.out.println("2. Para eliminar el ultimo elemento");
-      System.out.println("3. Para mostrar la pila");
-      System.out.println("4. Para salir");
+      System.out.println("3. Para mostrar datos de la pila");
+      System.out.println("4. Para crear backup de la pila original");
+      System.out.println("5. Para salir");
       option = scan.nextByte();
 
       switch (option) {
@@ -29,11 +32,14 @@ public class Stack {
         case 3:
           showStack();
           break;
+        case 4:
+          createBackStack();
+          break;
         default:
           break;
       }
 
-    } while (option < 4);
+    } while (option < 5);
 
   }
 
@@ -51,11 +57,10 @@ public class Stack {
 
   private static void deleteLastNode() {
 
-    if (objStack.isEmpty()) {
+    if (!objStack.popNode()) {
       System.out.println("La pila esta vacia");
     } else {
-      objStack.popNode();
-      System.out.println("Elemento el ultimo en entrar fue eliminado");
+      System.out.println("el ultimo elemento en entrar fue eliminado");
     }
   }
 
@@ -70,6 +75,26 @@ public class Stack {
         temp = temp.getNextPte();
       }
     }
+  }
 
+  private static void createBackStack() {
+
+    if (!objStack.showStack()) {
+      System.out.println("La pila original esta vacia");
+    } else {
+
+      while (!objStack.isEmpty()) {
+        objBackStack.pushNode(objStack.topPte.getInfo());
+        objStack.popNode();
+      } 
+
+      System.out.println("\n la pila de respaldo es: ");
+      Node temp = objBackStack.topPte;
+      while (temp != null) {
+        System.out.println("el valor del node de la pila es " + temp.getInfo());
+        temp = temp.getNextPte();
+      }
+
+    }
   }
 }
