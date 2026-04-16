@@ -128,7 +128,7 @@ public class Queue {
 
 // ejercicios
 
-// 1. destructor no realiza backup
+// 1. destructor, no realiza backup
 // 2. duplicar cola 1 y 2 tiene los mismos datos
 // 3. contar el numeor de elementos de la cola
 // 4. encintrar el mayor y menor de la cola

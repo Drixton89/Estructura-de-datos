@@ -19,7 +19,9 @@ public class Stack {
       System.out.println("2. Para eliminar el ultimo elemento");
       System.out.println("3. Para mostrar datos de la pila");
       System.out.println("4. Para crear backup de la pila original");
-      System.out.println("5. Para salir");
+      System.out.println("5. Para contar los elementos de una pila");
+      System.out.println("6. Para encontrar el mayor elemento de la pila");
+      System.out.println("7. Para salir");
       option = scan.nextByte();
 
       switch (option) {
@@ -31,15 +33,21 @@ public class Stack {
           break;
         case 3:
           showStack();
-          break;
+          break;  
         case 4:
           createBackStack();
+          break;
+        case 5:
+          countElements();
+          break;
+        case 6:
+          findMaxElement();
           break;
         default:
           break;
       }
 
-    } while (option < 5);
+    } while (option < 7);
 
   }
 
@@ -97,4 +105,44 @@ public class Stack {
 
     }
   }
+
+  private static void countElements(){
+    int count = 0;
+
+   if (!objStack.showStack()) {
+      System.out.println("La pila esta vacia");
+    } else {
+      Node temp = objStack.topPte;
+      while (temp != null) {
+        count++;
+        temp = temp.getNextPte();
+      }
+      System.out.println("El numero de elementos en la pila es: " + count);
+    }
+    
+  }
+
+  private static void findMaxElement() {
+
+    if (!objStack.showStack()) {
+      System.out.println("La pila esta vacia");
+    } else {
+      Node temp = objStack.topPte;
+      int valueMaxNode = 0; 
+
+      while (temp != null) {
+        
+        if (temp.getInfo() > valueMaxNode) {
+          valueMaxNode = temp.getInfo();
+        }
+        
+        temp = temp.getNextPte();
+      }
+      System.out.println("El numero mayor en la pila es: " + valueMaxNode);
+    }
+  }
 }
+
+// taller
+// 1. Mover la pila p1 a la pila actual
+// 3. Concatenar la pila p1 al inicio de la pila actual
