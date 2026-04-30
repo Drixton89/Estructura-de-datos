@@ -3,49 +3,82 @@ import controller.Controller;
 import java.util.Scanner;
 
 public class Tree {
+  private static Controller controller = new Controller();
+  private static Scanner scanner = new Scanner(System.in);
+  
   public static void main(String[] args) {
-    Controller controller = new Controller();
-    Scanner scanner = new Scanner(System.in);
+
     int option;
-    int data;
 
     do {
       System.out.println("1. Insertar nodo");
       System.out.println("2. Eliminar nodo");
       System.out.println("3. Buscar nodo");
       System.out.println("4. Imprimir arbol");
-      System.out.println("5. Salir");
       System.out.print("Ingrese una opcion: ");
       option = scanner.nextInt();
 
       switch (option) {
         case 1:
-          System.out.print("Ingrese el dato a insertar: ");
-          data = scanner.nextInt();
-          controller.insertNode(data);
+          addNodeToTree();
           break;
         case 2:
-          System.out.print("Ingrese el dato a eliminar: ");
-          data = scanner.nextInt();
-          controller.deleteNode(data);
+          deleteNodeToTree();
           break;
         case 3:
-          System.out.print("Ingrese el dato a buscar: ");
-          data = scanner.nextInt();
-          controller.searchNode(data);
+          searchNodeTree();
           break;
         case 4:
-          controller.printTree();
-          break;
-        case 5:
-          System.out.println("Saliendo...");
+          showTree();
           break;
         default:
           System.out.println("Opcion no valida");
           break;
       }
-    } while (option != 5);
+    } while (option < 4);
 
     scanner.close();
+  }
+
+  private static void addNodeToTree() {
+    System.out.print("Ingrese el dato a insertar: ");
+    int data = scanner.nextInt();
+    
+    if(controller.insertNode(data)) {
+      System.out.println("Nodo insertado correctamente.");
+    } else {
+      System.out.println("Error al insertar el nodo.");
+    }
+  }
+
+  private static void deleteNodeToTree( ) {
+    System.out.print("Ingrese el dato a eliminar: ");
+    int data = scanner.nextInt();
+    
+    if(controller.deleteNode(data)) {
+      System.out.println("Nodo eliminado correctamente.");
+    } else {
+      System.out.println("Error al eliminar el nodo.");
+    }
+  }
+
+  private static void searchNodeTree( ) {
+    System.out.print("Ingrese el dato a buscar: ");
+    int data = scanner.nextInt();
+    
+    if(controller.searchNode(data)) {
+      System.out.println("Nodo encontrado correctamente.");
+    } else {
+      System.out.println("Error al buscar el nodo.");
+    }
+  }
+
+  private static void showTree( ) {
+    
+    if(controller.printTree()) {
+      System.out.println("Arbol impreso correctamente.");
+    } else {
+      System.out.println("Error al imprimir el arbol.");
+    }
   }
 }

@@ -13,14 +13,19 @@ public class Controller {
     return node == null;
   }
 
-  public void insertNode(int data) {
+  public boolean insertNode(int data) {
     Node newNode = new Node();
+    boolean result = false;
+
     newNode.setValue(data);
     if (isEmpty(root)) {
       root = newNode;
+      result = true;
     } else {
       insertNodeRecursive(root, newNode);
+      result = true;
     }
+    return result;
   }
 
   private void insertNodeRecursive(Node current, Node newNode) {
@@ -39,12 +44,16 @@ public class Controller {
     }
   }
 
-  public void deleteNode(int data) {
+  public boolean deleteNode(int data) {
+    boolean result = false;
+
     if (isEmpty(root)) {
       System.out.println("El arbol esta vacio.");
-      return;
+      return result;
     }
     root = deleteNodeRecursive(root, data);
+    result = true;
+    return result;
   }
 
   private Node deleteNodeRecursive(Node current, int data) {
@@ -75,17 +84,15 @@ public class Controller {
     return node.getValue();
   }
 
-  public void searchNode(int data) {
+  public boolean searchNode(int data) {
+    boolean result = false;
+
     if (isEmpty(root)) {
-      System.out.println("El arbol esta vacio.");
-      return;
-    }
-    boolean found = searchNodeRecursive(root, data);
-    if (found) {
-      System.out.println("Nodo " + data + " encontrado en el arbol.");
+      return result;
     } else {
-      System.out.println("Nodo " + data + " no encontrado en el arbol.");
+      result = searchNodeRecursive(root, data);
     }
+    return result;
   }
 
   private boolean searchNodeRecursive(Node current, int data) {
@@ -95,18 +102,19 @@ public class Controller {
     return searchNodeRecursive(current.getRight(), data);
   }
 
-  public void printTree() {
+  public boolean printTree() {
+    boolean result = false;
+
     if (isEmpty(root)) {
-      System.out.println("El arbol esta vacio.");
-      return;
+      return result;
+    } else {
+      printInOrder(root);
+      result = true;
     }
-    System.out.println("Recorrido en orden (inorden):");
-    printInOrder(root);
-    System.out.println();
+    return result;
   }
 
   private void printInOrder(Node current) {
-    if (isEmpty(current)) return;
     printInOrder(current.getLeft());
     System.out.print(current.getValue() + " ");
     printInOrder(current.getRight());
