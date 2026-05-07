@@ -15,6 +15,9 @@ public class Controller {
     return node == null;
   }
 
+  /*
+   * insertNode
+   */
   public boolean insertNode(int data) {
     Node newNode = new Node();
     boolean result = false;
@@ -46,6 +49,7 @@ public class Controller {
     }
   }
 
+  // search BST
   public boolean searchNode(int data) {
     boolean result = false;
 
@@ -58,12 +62,18 @@ public class Controller {
   }
 
   private boolean searchNodeRecursive(Node current, int data) {
-    if (isEmpty(current)) return false;
-    if (data == current.getValue()) return true;
-    if (data < current.getValue()) return searchNodeRecursive(current.getLeft(), data);
+    if (isEmpty(current))
+      return false;
+    if (data == current.getValue())
+      return true;
+    if (data < current.getValue())
+      return searchNodeRecursive(current.getLeft(), data);
     return searchNodeRecursive(current.getRight(), data);
   }
 
+  /*
+   * search inOrder
+   */
   public List<Integer> inOrderTraversal() {
     List<Integer> list = new LinkedList<>();
     if (!isEmpty(root)) {
@@ -73,12 +83,16 @@ public class Controller {
   }
 
   private void inOrder(Node current, List<Integer> list) {
-    if (isEmpty(current)) return;
+    if (isEmpty(current))
+      return;
     inOrder(current.getLeft(), list);
     list.add(current.getValue());
     inOrder(current.getRight(), list);
   }
 
+  /*
+   *search preOrder
+   */
   public List<Integer> preOrderTraversal() {
     List<Integer> list = new LinkedList<>();
     if (!isEmpty(root)) {
@@ -88,9 +102,50 @@ public class Controller {
   }
 
   private void preOrder(Node current, List<Integer> list) {
-    if (isEmpty(current)) return;
+    if (isEmpty(current))
+      return;
     list.add(current.getValue());
     preOrder(current.getLeft(), list);
     preOrder(current.getRight(), list);
   }
+
+  /*
+   * deleteNode
+   */
+  public boolean deleteNode(int data) {
+    if (isEmpty(root)) {
+      return false;
+    }
+    boolean[] found = { false };
+    root = deleteNodeRecursive(root, data, found);
+    return found[0];
+  }
+
+  private Node deleteNodeRecursive(Node current, int data, boolean[] found) {
+    if (isEmpty(current))
+      return null;
+    if (data < current.getValue()) {
+      current.setLeft(deleteNodeRecursive(current.getLeft(), data, found));
+    } else if (data > current.getValue()) {
+      current.setRight(deleteNodeRecursive(current.getRight(), data, found));
+    } else {
+      found[0] = true;
+      if (isEmpty(current.getLeft()))
+        return current.getRight();
+      if (isEmpty(current.getRight()))
+        return current.getLeft();
+      int successor = findMin(current.getRight());
+      current.setValue(successor);
+      current.setRight(deleteNodeRecursive(current.getRight(), successor, found));
+    }
+    return current;
+  }
+
+  private int findMin(Node node) {
+    while (!isEmpty(node.getLeft())) {
+      node = node.getLeft();
+    }
+    return node.getValue();
+  }
+
 }
