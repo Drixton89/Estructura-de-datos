@@ -22,22 +22,18 @@ public class Tree {
 
       switch (option) {
         case 1:
-          addNodeToTree();
+          insertNode();
           break;
         case 2:
-          searchNodeTree();
+          searchBST();
           break;
         case 3:
-          inOrderTraversal();
+          traversalInOrder();
           break;
         case 4:
-          preOrderTraversal();
+          traversalPreOrder();
           break;
         case 5:
-          System.out.println("Saliendo...");
-          break;
-        default:
-          System.out.println("Opcion no valida");
           break;
       }
     } while (option != 5);
@@ -45,7 +41,7 @@ public class Tree {
     scanner.close();
   }
 
-  private static void addNodeToTree() {
+  private static void insertNode() {
     System.out.print("Ingrese el dato a insertar: ");
     int data = scanner.nextInt();
     
@@ -56,7 +52,7 @@ public class Tree {
     }
   }
 
-  private static void searchNodeTree( ) {
+  private static void searchBST() {
     System.out.print("Ingrese el dato a buscar: ");
     int data = scanner.nextInt();
     
@@ -67,7 +63,7 @@ public class Tree {
     }
   }
 
-  private static void inOrderTraversal() {
+  private static void traversalInOrder() {
     List<Integer> list = controller.inOrderTraversal();
     if (list.isEmpty()) {
       System.out.println("El arbol esta vacio.");
@@ -78,7 +74,7 @@ public class Tree {
     }
   }
 
-  private static void preOrderTraversal() {
+  private static void traversalPreOrder() {
     List<Integer> list = controller.preOrderTraversal();
     if (list.isEmpty()) {
       System.out.println("El arbol esta vacio.");
