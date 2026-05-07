@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.LinkedList;
+import java.util.List;
 import model.Node;
 
 public class Controller {
@@ -44,46 +46,6 @@ public class Controller {
     }
   }
 
-  public boolean deleteNode(int data) {
-    boolean result = false;
-
-    if (isEmpty(root)) {
-      System.out.println("El arbol esta vacio.");
-      return result;
-    }
-    root = deleteNodeRecursive(root, data);
-    result = true;
-    return result;
-  }
-
-  private Node deleteNodeRecursive(Node current, int data) {
-    if (isEmpty(current)) {
-      System.out.println("El nodo " + data + " no existe en el arbol.");
-      return null;
-    }
-    if (data < current.getValue()) {
-      current.setLeft(deleteNodeRecursive(current.getLeft(), data));
-    } else if (data > current.getValue()) {
-      current.setRight(deleteNodeRecursive(current.getRight(), data));
-    } else {
-      // nodo encontrado
-      if (isEmpty(current.getLeft())) return current.getRight();
-      if (isEmpty(current.getRight())) return current.getLeft();
-      // dos hijos: reemplazar con el menor del subárbol derecho
-      int minValue = findMin(current.getRight());
-      current.setValue(minValue);
-      current.setRight(deleteNodeRecursive(current.getRight(), minValue));
-    }
-    return current;
-  }
-
-  private int findMin(Node node) {
-    while (!isEmpty(node.getLeft())) {
-      node = node.getLeft();
-    }
-    return node.getValue();
-  }
-
   public boolean searchNode(int data) {
     boolean result = false;
 
@@ -102,21 +64,33 @@ public class Controller {
     return searchNodeRecursive(current.getRight(), data);
   }
 
-  public boolean printTree() {
-    boolean result = false;
-
-    if (isEmpty(root)) {
-      return result;
-    } else {
-      printInOrder(root);
-      result = true;
+  public List<Integer> inOrderTraversal() {
+    List<Integer> list = new LinkedList<>();
+    if (!isEmpty(root)) {
+      inOrder(root, list);
     }
-    return result;
+    return list;
   }
 
-  private void printInOrder(Node current) {
-    printInOrder(current.getLeft());
-    System.out.print(current.getValue() + " ");
-    printInOrder(current.getRight());
+  private void inOrder(Node current, List<Integer> list) {
+    if (isEmpty(current)) return;
+    inOrder(current.getLeft(), list);
+    list.add(current.getValue());
+    inOrder(current.getRight(), list);
+  }
+
+  public List<Integer> preOrderTraversal() {
+    List<Integer> list = new LinkedList<>();
+    if (!isEmpty(root)) {
+      preOrder(root, list);
+    }
+    return list;
+  }
+
+  private void preOrder(Node current, List<Integer> list) {
+    if (isEmpty(current)) return;
+    list.add(current.getValue());
+    preOrder(current.getLeft(), list);
+    preOrder(current.getRight(), list);
   }
 }

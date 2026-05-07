@@ -1,5 +1,6 @@
 
 import controller.Controller;
+import java.util.List;
 import java.util.Scanner;
 
 public class Tree {
@@ -12,9 +13,10 @@ public class Tree {
 
     do {
       System.out.println("1. Insertar nodo");
-      System.out.println("2. Eliminar nodo");
-      System.out.println("3. Buscar nodo");
-      System.out.println("4. Imprimir arbol");
+      System.out.println("2. Buscar nodo (BST)");
+      System.out.println("3. Recorrido InOrder");
+      System.out.println("4. Recorrido PreOrder");
+      System.out.println("5. Salir");
       System.out.print("Ingrese una opcion: ");
       option = scanner.nextInt();
 
@@ -23,19 +25,22 @@ public class Tree {
           addNodeToTree();
           break;
         case 2:
-          deleteNodeToTree();
-          break;
-        case 3:
           searchNodeTree();
           break;
+        case 3:
+          inOrderTraversal();
+          break;
         case 4:
-          showTree();
+          preOrderTraversal();
+          break;
+        case 5:
+          System.out.println("Saliendo...");
           break;
         default:
           System.out.println("Opcion no valida");
           break;
       }
-    } while (option < 4);
+    } while (option != 5);
 
     scanner.close();
   }
@@ -51,17 +56,6 @@ public class Tree {
     }
   }
 
-  private static void deleteNodeToTree( ) {
-    System.out.print("Ingrese el dato a eliminar: ");
-    int data = scanner.nextInt();
-    
-    if(controller.deleteNode(data)) {
-      System.out.println("Nodo eliminado correctamente.");
-    } else {
-      System.out.println("Error al eliminar el nodo.");
-    }
-  }
-
   private static void searchNodeTree( ) {
     System.out.print("Ingrese el dato a buscar: ");
     int data = scanner.nextInt();
@@ -73,12 +67,25 @@ public class Tree {
     }
   }
 
-  private static void showTree( ) {
-    
-    if(controller.printTree()) {
-      System.out.println("Arbol impreso correctamente.");
+  private static void inOrderTraversal() {
+    List<Integer> list = controller.inOrderTraversal();
+    if (list.isEmpty()) {
+      System.out.println("El arbol esta vacio.");
     } else {
-      System.out.println("Error al imprimir el arbol.");
+      System.out.print("Recorrido InOrder (Izq - Raiz - Der): ");
+      list.forEach(value -> System.out.print(value + " - "));
+      System.out.println();
+    }
+  }
+
+  private static void preOrderTraversal() {
+    List<Integer> list = controller.preOrderTraversal();
+    if (list.isEmpty()) {
+      System.out.println("El arbol esta vacio.");
+    } else {
+      System.out.print("Recorrido PreOrder (Raiz - Izq - Der): ");
+      list.forEach(value -> System.out.print(value + " - "));
+      System.out.println();
     }
   }
 }
