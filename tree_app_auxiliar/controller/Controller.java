@@ -124,6 +124,7 @@ public class Controller {
   private Node deleteNodeRecursive(Node current, int data, boolean[] found) {
     if (isEmpty(current))
       return null;
+    
     if (data < current.getValue()) {
       current.setLeft(deleteNodeRecursive(current.getLeft(), data, found));
     } else if (data > current.getValue()) {

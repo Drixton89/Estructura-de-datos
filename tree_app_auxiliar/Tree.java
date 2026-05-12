@@ -101,3 +101,14 @@ public class Tree {
     }
   }
 }
+
+// taller
+/*
+Taller preparación parcial de arboles:
+  1. Recorrido del árbol en PostOrden
+  2. Buscar un nodo en el árbol, si este no se encuentra hacerlo saber o si el árbol esta vacío.
+  3. Destruir el árbol.
+  4. Conocer la altura del árbol.
+  5. Podar árbol.
+  6. Cantidad total de nodos.
+*/
