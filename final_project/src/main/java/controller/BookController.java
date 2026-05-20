@@ -1,7 +1,8 @@
 package controller;
 
-import list.BookLinkedList;
 import model.ModelBook;
+import transfer.BookLinkedList;
+
 import java.util.ArrayList;
 
 public class BookController {
