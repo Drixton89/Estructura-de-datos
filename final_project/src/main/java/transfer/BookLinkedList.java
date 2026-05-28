@@ -109,7 +109,8 @@ public class BookLinkedList {
 	// DELETE
 	public boolean eliminar(int id) throws Exception {
 		try {
-			if (head == null)
+
+			if (isEmpty())
 				return false;
 
 			if (head.data.getId() == id) {
