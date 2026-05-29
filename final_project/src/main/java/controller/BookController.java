@@ -14,7 +14,7 @@ public class BookController {
 		try {
 			lista = new BookLinkedList();
 		} catch (Exception e) {
-			throw new Exception("Error al inicializar el controlador: " + e.getMessage());
+			throw new Exception("Error:  " + e.getMessage());
 		}
 	}
 

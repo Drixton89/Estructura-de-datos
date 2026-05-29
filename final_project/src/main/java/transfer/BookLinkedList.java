@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class BookLinkedList {
 
 	private Node head;
-	private int size;
 	private int nextId;
 	private final BookDAO dao = new BookDAO();
 
@@ -38,7 +37,6 @@ public class BookLinkedList {
 			}
 			current.next = newNode;
 		}
-		size++;
 	}
 
 	public int getNextId() {
@@ -115,7 +113,6 @@ public class BookLinkedList {
 
 			if (head.data.getId() == id) {
 				head = head.next;
-				size--;
 				dao.guardar(listar());
 				return true;
 			}
@@ -124,7 +121,6 @@ public class BookLinkedList {
 			while (actual.next != null) {
 				if (actual.next.data.getId() == id) {
 					actual.next = actual.next.next;
-					size--;
 					dao.guardar(listar());
 					return true;
 				}
@@ -140,7 +136,4 @@ public class BookLinkedList {
 		return head == null;
 	}
 
-	public int size() {
-		return size;
-	}
 }
