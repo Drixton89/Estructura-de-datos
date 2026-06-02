@@ -112,7 +112,6 @@ public class Book {
 
 	private static void actualizarLibro() {
 		try {
-			System.out.println("\n--- Actualizar Libro ---");
 			if (controller.listaVacia()) {
 				System.out.println("No hay libros registrados.");
 				return;
@@ -167,7 +166,6 @@ public class Book {
 
 	private static void eliminarLibro() {
 		try {
-			System.out.println("\n--- Eliminar Libro ---");
 			if (controller.listaVacia()) {
 				System.out.println("No hay libros registrados.");
 				return;

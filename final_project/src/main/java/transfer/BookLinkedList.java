@@ -108,9 +108,6 @@ public class BookLinkedList {
 	public boolean eliminar(int id) throws Exception {
 		try {
 
-			if (isEmpty())
-				return false;
-
 			if (head.data.getId() == id) {
 				head = head.next;
 				dao.guardar(listar());

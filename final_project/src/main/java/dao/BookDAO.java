@@ -26,8 +26,8 @@ public class BookDAO {
 			File file = new File(FILE_PATH);
 			if (!file.exists())
 				return libros;
-			ModelBook[] arr = mapper.readValue(file, ModelBook[].class);
-			libros.addAll(Arrays.asList(arr));
+			ModelBook[] readBooks = mapper.readValue(file, ModelBook[].class);
+			libros.addAll(Arrays.asList(readBooks));
 			return libros;
 		} catch (Exception e) {
 			throw new Exception("Error al cargar desde archivo: " + e.getMessage());
